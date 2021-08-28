@@ -1,9 +1,11 @@
+'use strict';
+
 import './sass/main.scss';
 import searchCountry from './js/country-service';
 import refs from './js/refs'
 import articlesOneCountry from './templates/oneCountry.hbs';
 import countryList from './templates/manyCoutry.hbs'
-
+import '@pnotify/core/dist/BrightTheme.css';
 
 
 const { error } = require('@pnotify/core');
@@ -34,12 +36,13 @@ function countrySearchInputHandler(e) {
           buildListMarkup(data, countryList);
       }
   })
-  .catch(Error => {
-      Error({
-          text: "You must enter query parameters!"
-      });
+  .catch(Error)
       console.log(Error)
-  })
+  }
+
+
+function Error() {
+  alert('Sorry, something went wrong!');
 }
 
 function buildListMarkup(countryes, template) {
